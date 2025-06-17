@@ -80,9 +80,9 @@ Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolv
 - **Excluir usuário**: DELETE http://localhost/api/usuarios/{id}
 
 #### Alunos
-- **Listar todos os alunos**: GET http://localhost/api/alunos
-- **Buscar aluno por ID**: GET http://localhost/api/alunos/{id}
-- **Criar aluno**: POST http://localhost/api/alunos
+- **Listar todos os alunos**: GET http://localhost/api/usuarios
+- **Buscar aluno por ID**: GET http://localhost/api/usuarios/{id}
+- **Criar aluno**: POST http://localhost/api/usuarios
   ```json
   {
     "nome": "Nome do Aluno",
@@ -91,8 +91,8 @@ Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolv
     "telefone": "(11) 98765-4321"
   }
   ```
-- **Atualizar aluno**: PUT http://localhost/api/alunos/{id}
-- **Excluir aluno**: DELETE http://localhost/api/alunos/{id}
+- **Atualizar aluno**: PUT http://localhost/api/usuarios/{id}
+- **Excluir aluno**: DELETE http://localhost/api/usuarios/{id}
 
 #### Professores
 - **Listar todos os professores**: GET http://localhost/api/professores
@@ -130,6 +130,3 @@ Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolv
 
 ### Portas em uso
 - Se alguma porta já estiver em uso, modifique o arquivo docker-compose.yml para usar portas diferentes
-
-## Autores
-- Equipe de Desenvolvimento
