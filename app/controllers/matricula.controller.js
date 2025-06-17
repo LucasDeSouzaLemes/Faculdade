@@ -23,8 +23,8 @@ exports.findOne = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    if (!req.body.aluno_id || !req.body.turma_id) {
-      return res.status(400).json({ message: 'Aluno e turma são obrigatórios' });
+    if (!req.body.aluno_id) {
+      return res.status(400).json({ message: 'Aluno é obrigatório' });
     }
     
     const matricula = await Matricula.create(req.body);

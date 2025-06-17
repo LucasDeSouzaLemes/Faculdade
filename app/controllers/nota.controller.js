@@ -32,8 +32,8 @@ exports.findByAluno = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    if (!req.body.aluno_id || !req.body.disciplina_id || req.body.valor === undefined) {
-      return res.status(400).json({ message: 'Aluno, disciplina e valor são obrigatórios' });
+    if (!req.body.aluno_id || req.body.valor === undefined) {
+      return res.status(400).json({ message: 'Aluno e valor são obrigatórios' });
     }
     
     const nota = await Nota.create(req.body);

@@ -1,7 +1,7 @@
-# Sistema de Gerenciamento Escolar Infantil
+# Sistema de Gerenciamento de Alunos
 
 ## Descrição do Projeto
-Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolvido como backend com API RESTful. O sistema permite gerenciar alunos, professores, turmas, disciplinas, notas, responsáveis e usuários do sistema.
+Este projeto consiste em um sistema de gerenciamento de alunos, desenvolvido como backend com API RESTful. O sistema permite gerenciar alunos, suas matrículas e notas.
 
 ## Estrutura de Pastas
 - **app/**: Contém todos os arquivos fonte do sistema backend
@@ -12,11 +12,8 @@ Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolv
   - **middlewares/**: Middlewares para processamento de requisições
   - **index.js**: Arquivo principal que inicializa o servidor
 - **docs/**: Documentação técnica do projeto
-  - **MER.txt**: Modelo Entidade-Relacionamento do banco de dados
-  - **DFD.txt**: Diagrama de Fluxo de Dados do sistema
 - **sql/**: Scripts SQL para criação e inicialização do banco de dados
   - **init.sql**: Script para criação das tabelas principais
-  - **usuario.sql**: Script para criação da tabela de usuários
 - **Dockerfile**: Instruções para construir a imagem Docker do backend
 - **Dockerfile.db**: Instruções para construir a imagem Docker do banco de dados
 - **Dockerfile.nginx**: Instruções para construir a imagem Docker do servidor Nginx
@@ -32,7 +29,9 @@ Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolv
 
 ### Passos para Execução
 1. Clone o repositório
+- https://github.com/LucasDeSouzaLemes/Faculdade.git
 2. Navegue até a pasta do projeto
+- cd Projeto-faculdade
 3. Construa e inicie os containers:
    ```
    docker-compose up -d --build
@@ -51,62 +50,50 @@ Este projeto consiste em um sistema de gerenciamento escolar infantil, desenvolv
 
 ### Interagindo com a API
 
-#### Usuários
-- **Listar todos os usuários**: GET http://localhost/api/usuarios
-- **Buscar usuário por ID**: GET http://localhost/api/usuarios/{id}
-- **Criar usuário**: POST http://localhost/api/usuarios
-  ```json
-  {
-    "nome": "Nome do Usuário",
-    "email": "usuario@exemplo.com",
-    "senha": "123456",
-    "tipo": "Administrador"  // Valores aceitos: "Administrador", "Professor", "Aluno"
-  }
-  ```
-- **Atualizar usuário**: PUT http://localhost/api/usuarios/{id}
-  ```json
-  {
-    "nome": "Nome Atualizado",
-    "email": "email@atualizado.com",
-    "tipo": "Professor"
-  }
-  ```
-- **Atualizar senha**: PATCH http://localhost/api/usuarios/{id}/senha
-  ```json
-  {
-    "senha": "novaSenha123"
-  }
-  ```
-- **Excluir usuário**: DELETE http://localhost/api/usuarios/{id}
-
 #### Alunos
-- **Listar todos os alunos**: GET http://localhost/api/usuarios
-- **Buscar aluno por ID**: GET http://localhost/api/usuarios/{id}
-- **Criar aluno**: POST http://localhost/api/usuarios
+- **Listar todos os alunos**: GET http://localhost/api/alunos
+- **Buscar aluno por ID**: GET http://localhost/api/alunos/{id}
+- **Criar aluno**: POST http://localhost/api/alunos
   ```json
   {
     "nome": "Nome do Aluno",
-    "data_nascimento": "2018-01-15",
+    "data_nascimento": "YYYY-MM-DD",
     "endereco": "Rua Exemplo, 123",
     "telefone": "(11) 98765-4321"
   }
   ```
-- **Atualizar aluno**: PUT http://localhost/api/usuarios/{id}
-- **Excluir aluno**: DELETE http://localhost/api/usuarios/{id}
+- **Atualizar aluno**: PUT http://localhost/api/alunos/{id}
+- **Excluir aluno**: DELETE http://localhost/api/alunos/{id}
 
-#### Professores
-- **Listar todos os professores**: GET http://localhost/api/professores
-- **Buscar professor por ID**: GET http://localhost/api/professores/{id}
-- **Criar professor**: POST http://localhost/api/professores
-- **Atualizar professor**: PUT http://localhost/api/professores/{id}
-- **Excluir professor**: DELETE http://localhost/api/professores/{id}
+#### Matrículas
+- **Listar todas as matrículas**: GET http://localhost/api/matriculas
+- **Buscar matrícula por ID**: GET http://localhost/api/matriculas/{id}
+- **Criar matrícula**: POST http://localhost/api/matriculas
+  ```json
+  {
+    "aluno_id": 1,
+    "data_matricula": "YYYY-MM-DD",
+    "status": "Ativa"
+  }
+  ```
+- **Atualizar matrícula**: PUT http://localhost/api/matriculas/{id}
+- **Excluir matrícula**: DELETE http://localhost/api/matriculas/{id}
 
-#### Turmas
-- **Listar todas as turmas**: GET http://localhost/api/turmas
-- **Buscar turma por ID**: GET http://localhost/api/turmas/{id}
-- **Criar turma**: POST http://localhost/api/turmas
-- **Atualizar turma**: PUT http://localhost/api/turmas/{id}
-- **Excluir turma**: DELETE http://localhost/api/turmas/{id}
+#### Notas
+- **Listar todas as notas**: GET http://localhost/api/notas
+- **Buscar nota por ID**: GET http://localhost/api/notas/{id}
+- **Buscar notas por aluno**: GET http://localhost/api/notas/aluno/{id}
+- **Criar nota**: POST http://localhost/api/notas
+  ```json
+  {
+    "aluno_id": 1,
+    "valor": 9.5,
+    "data_avaliacao": "YYYY-MM-DD",
+    "observacao": "Excelente desempenho"
+  }
+  ```
+- **Atualizar nota**: PUT http://localhost/api/notas/{id}
+- **Excluir nota**: DELETE http://localhost/api/notas/{id}
 
 ## Tecnologias Utilizadas
 - Node.js
