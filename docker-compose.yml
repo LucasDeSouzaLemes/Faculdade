@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: escola-app
+    restart: always
+    expose:
+      - "3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=escola_infantil
+    networks:
+      - escola-network
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: escola-db
+    restart: always
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=escola_infantil
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - escola-network
+      
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: escola-nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - escola-network
+
+networks:
+  escola-network:
+    driver: bridge
+
+volumes:
+  db-data:
