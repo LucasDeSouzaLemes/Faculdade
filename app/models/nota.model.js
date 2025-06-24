@@ -30,19 +30,19 @@ class Nota {
   }
 
   static async create(nota) {
-    const { aluno_id, valor, data_avaliacao, observacao } = nota;
+    const { aluno_id, professor_id, valor, data_avaliacao, observacao } = nota;
     const [result] = await db.query(
-      'INSERT INTO notas (aluno_id, valor, data_avaliacao, observacao) VALUES (?, ?, ?, ?)',
-      [aluno_id, valor, data_avaliacao, observacao]
+      'INSERT INTO notas (aluno_id, professor_id, nota_aluno, data_avaliacao, observacao) VALUES (?, ?, ?, ?, ?)',
+      [aluno_id, professor_id, valor, data_avaliacao, observacao]
     );
     return { id: result.insertId, ...nota };
   }
 
   static async update(id, nota) {
-    const { aluno_id, valor, data_avaliacao, observacao } = nota;
+    const { aluno_id, professor_id, valor, data_avaliacao, observacao } = nota;
     await db.query(
-      'UPDATE notas SET aluno_id = ?, valor = ?, data_avaliacao = ?, observacao = ? WHERE id = ?',
-      [aluno_id, valor, data_avaliacao, observacao, id]
+      'UPDATE notas SET aluno_id = ?, professor_id = ?, nota_aluno = ?, data_avaliacao = ?, observacao = ? WHERE id = ?',
+      [aluno_id, professor_id, valor, data_avaliacao, observacao, id]
     );
     return { id, ...nota };
   }

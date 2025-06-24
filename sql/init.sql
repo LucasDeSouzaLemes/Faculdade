@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS notas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   aluno_id INT NOT NULL,
   professor_id INT,
-  valor DECIMAL(4,2) NOT NULL,
+  nota_aluno DECIMAL(4,2) NOT NULL,
   data_avaliacao DATE,
   observacao TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -101,7 +101,7 @@ INSERT INTO professores (nome, email, telefone) VALUES
 CREATE VIEW view_alunos_matriculas AS
 SELECT 
     a.id,
-    a.nome AS aluno_nome,
+    a.nome AS nome_aluno,
     a.data_nascimento,
     m.data_matricula,
     m.status
@@ -112,9 +112,9 @@ INNER JOIN matriculas m ON a.id = m.aluno_id;
 CREATE VIEW view_notas_completas AS
 SELECT 
     n.id,
-    a.nome AS aluno_nome,
-    p.nome AS professor_nome,
-    n.valor,
+    a.nome AS nome_aluno,
+    p.nome AS nome_professor,
+    n.nota_aluno,
     n.data_avaliacao,
     n.observacao
 FROM notas n
@@ -125,8 +125,8 @@ LEFT JOIN professores p ON n.professor_id = p.id;
 CREATE VIEW view_presencas_completas AS
 SELECT 
     pr.id,
-    a.nome AS aluno_nome,
-    p.nome AS professor_nome,
+    a.nome AS nome_aluno,
+    p.nome AS nome_professor,
     pr.data_aula,
     pr.presente,
     pr.observacao
@@ -138,12 +138,12 @@ LEFT JOIN professores p ON pr.professor_id = p.id;
 CREATE VIEW view_relatorio_aluno AS
 SELECT 
     a.id,
-    a.nome AS aluno_nome,
+    a.nome AS nome_aluno,
     a.data_nascimento,
     m.data_matricula,
     m.status AS status_matricula,
     COUNT(DISTINCT n.id) AS total_notas,
-    AVG(n.valor) AS media_notas,
+    AVG(n.nota_aluno) AS media_notas,
     COUNT(DISTINCT pr.id) AS total_presencas,
     SUM(CASE WHEN pr.presente = 1 THEN 1 ELSE 0 END) AS presencas_confirmadas
 FROM alunos a
@@ -167,7 +167,7 @@ INSERT INTO matriculas (aluno_id, data_matricula, status) VALUES
 (3, '2024-02-01', 'Ativa');
 
 -- Inserir algumas notas
-INSERT INTO notas (aluno_id, professor_id, valor, data_avaliacao, observacao) VALUES
+INSERT INTO notas (aluno_id, professor_id, nota_aluno, data_avaliacao, observacao) VALUES
 (1, 1, 8.5, '2024-03-15', 'Boa participação'),
 (1, 2, 7.0, '2024-03-20', 'Precisa melhorar'),
 (2, 1, 9.0, '2024-03-15', 'Excelente aluno'),

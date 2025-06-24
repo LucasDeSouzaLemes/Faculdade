@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const alunoRoutes = require('./routes/aluno.routes');
 const notaRoutes = require('./routes/nota.routes');
 const matriculaRoutes = require('./routes/matricula.routes');
+const professorRoutes = require('./routes/professor.routes');
+const presencaRoutes = require('./routes/presenca.routes');
 
 // Initialize express app
 const app = express();
@@ -24,6 +26,8 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use('/alunos', alunoRoutes);
 app.use('/notas', notaRoutes);
 app.use('/matriculas', matriculaRoutes);
+app.use('/professores', professorRoutes);
+app.use('/presencas', presencaRoutes);
 
 // Root route
 app.get('/', (req, res) => {
