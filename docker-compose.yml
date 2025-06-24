@@ -14,7 +14,7 @@ services:
     environment:
       - DB_HOST=db
       - DB_USER=root
-      - DB_PASSWORD=password
+      - DB_PASSWORD=0000
       - DB_NAME=escola_infantil
     networks:
       - escola-network
@@ -25,13 +25,14 @@ services:
       dockerfile: Dockerfile.db
     container_name: escola-db
     restart: always
-    expose:
-      - "3306"
+    ports:
+      - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=0000
       - MYSQL_DATABASE=escola_infantil
     volumes:
       - db-data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
     networks:
       - escola-network
       
