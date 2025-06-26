@@ -32,8 +32,8 @@ Faculdade/
 │   │   └── nota.routes.js
 │   └── index.js
 ├── docs/
-│   ├── DFD.txt
-│   └── MER.txt
+│   ├── DFD.png
+│   └── MER.png
 ├── sql/
 │   ├── init.sql
 │   └── usuario.sql
