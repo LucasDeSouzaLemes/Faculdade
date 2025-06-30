@@ -418,7 +418,7 @@ docker-compose up -d --build
 # Pare tudo que estiver usando as portas:
 docker-compose down
 
-# Ou mude as portas no arquivo docker-compose.yml
+# Ou mude as portas no arquivo docker-compose.yml.
 ```
 
 ### 🔍 **Ver logs de erro:**
