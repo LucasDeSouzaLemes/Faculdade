@@ -13,7 +13,7 @@ Um sistema completo para gerenciar uma escola infantil com:
 
 ## ESTRUTURA DO PROJETO
 
-```
+`````
 Faculdade/
 ├── app/
 │   ├── config/
@@ -45,9 +45,9 @@ Faculdade/
 ├── .env
 ├── package.json
 └── README.md
-```
+`````
 
----
+-----
 
 ## 🚀 COMO EXECUTAR (PASSO A PASSO)
 
@@ -79,7 +79,7 @@ docker-compose up -d --build
 2. **Acesse:** http://localhost/api/professores
 3. **Se aparecer uma lista com 30 professores = FUNCIONOU!** 🎉
 
----
+-----
 
 ## 🗄️ CONECTAR NO BANCO DE DADOS
 
@@ -98,7 +98,7 @@ docker-compose up -d --build
 - **4 views** com relatórios prontos
 - **Dados de exemplo** para testar
 
----
+-----
 
 ## 🌐 TESTANDO A API
 
