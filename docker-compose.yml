@@ -10,7 +10,8 @@ services:
     expose:
       - "3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DB_HOST=db
       - DB_USER=root
@@ -26,7 +27,7 @@ services:
     container_name: escola-db
     restart: always
     ports:
-      - "3300:3300"
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=0000
       - MYSQL_DATABASE=escola_infantil
@@ -35,6 +36,10 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
     networks:
       - escola-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
       
   nginx:
     build:

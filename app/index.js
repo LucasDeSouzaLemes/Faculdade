@@ -44,8 +44,12 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Servidor rodando na porta ${PORT}`);
+  
+  // Testar conexão com banco
+  const db = require('./config/db.config');
+  await db.testConnection();
 });
 
 module.exports = app;
