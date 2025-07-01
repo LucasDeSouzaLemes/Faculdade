@@ -421,18 +421,6 @@ docker-compose down
 # Ou mude as portas no arquivo docker-compose.yml.
 ```
 
-### 🔍 **Ver logs de erro:**
-```bash
-# Logs da aplicação:
-docker logs escola-app
-
-# Logs do banco:
-docker logs escola-db
-
-# Logs do nginx:
-docker logs escola-nginx
-```
-
 ---
 
 ## 🛑 PARAR O SISTEMA
