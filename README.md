@@ -86,7 +86,7 @@ docker-compose up -d --build
 ### Para MySQL Workbench:
 ```
 🔗 Host: localhost
-🔢 Porta: 3306
+🔢 Porta: 3300
 👤 Usuário: root
 🔐 Senha: 0000
 🗃️ Banco: escola_infantil
