@@ -6,4 +6,4 @@ ENV MYSQL_DATABASE=escola_infantil
 COPY ./sql/init.sql /docker-entrypoint-initdb.d/01-init.sql
 COPY ./sql/usuario.sql /docker-entrypoint-initdb.d/02-usuario.sql
 
-EXPOSE 3306
+EXPOSE 3300
